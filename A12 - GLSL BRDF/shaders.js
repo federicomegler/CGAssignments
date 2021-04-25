@@ -73,31 +73,31 @@ var S4 = `
 
 // Ambient, Toon diffuse and and Toon (Blinn based) specular. No emssion.
 var S5 = `
-	vec4 LAcontr = clamp(dot(lightDirA, normalVec),0.0,1.0) * vec4(0.0,0.0,0.0,0.0);
-	vec4 LBcontr = clamp(dot(lightDirB, normalVec),0.0,1.0) * vec4(0.0,0.0,0.0,0.0);
-	vec4 LCcontr = clamp(dot(lightDirC, normalVec),0.0,1.0) * vec4(0.0,0.0,0.0,0.0);
-	vec4 specA = pow(clamp(dot(normalVec, normalize(lightDirA + eyedirVec)), 0.0,1.0), SpecShine) * vec4(0.0,0.0,0.0,0.0);
-	vec4 specB = pow(clamp(dot(normalVec, normalize(lightDirB + eyedirVec)), 0.0,1.0), SpecShine) * vec4(0.0,0.0,0.0,0.0);
-	vec4 specC = pow(clamp(dot(normalVec, normalize(lightDirC + eyedirVec)), 0.0,1.0), SpecShine) * vec4(0.0,0.0,0.0,0.0);
+	vec4 LAcontr =  vec4(0.0,0.0,0.0,0.0);
+	vec4 LBcontr =  vec4(0.0,0.0,0.0,0.0);
+	vec4 LCcontr =  vec4(0.0,0.0,0.0,0.0);
+	vec4 specA = vec4(0.0,0.0,0.0,0.0);
+	vec4 specB =  vec4(0.0,0.0,0.0,0.0);
+	vec4 specC =  vec4(0.0,0.0,0.0,0.0);
 	
 	if(DToonTh <= dot(lightDirA, normalVec)){
-		LAcontr = clamp(dot(lightDirA, normalVec),0.0,1.0) * lightColorA;
+		LAcontr = lightColorA;
 	}
 	if(DToonTh <= dot(lightDirB, normalVec)){
-		LBcontr = clamp(dot(lightDirB, normalVec),0.0,1.0) * lightColorB;
+		LBcontr =  lightColorB;
 	}
 	if(DToonTh <= dot(lightDirC, normalVec)){
-		LCcontr = clamp(dot(lightDirC, normalVec),0.0,1.0) * lightColorC;
+		LCcontr =  lightColorC;
 	}
 
 	if(SToonTh <= dot(normalVec, normalize(lightDirA + eyedirVec))){
-		specA = pow(clamp(dot(normalVec, normalize(lightDirA + eyedirVec)), 0.0,1.0), 1.0) * lightColorA;
+		specA =  lightColorA;
 	}
 	if(SToonTh <= dot(normalVec, normalize(lightDirB + eyedirVec))){
-		specB = pow(clamp(dot(normalVec, normalize(lightDirB + eyedirVec)), 0.0,1.0), 1.0) * lightColorB;
+		specB = lightColorB;
 	}
 	if(SToonTh <= dot(normalVec, normalize(lightDirC + eyedirVec))){
-		specC = pow(clamp(dot(normalVec, normalize(lightDirC + eyedirVec)), 0.0,1.0), 1.0) * lightColorC;
+		specC =  lightColorC;
 	}
 	
 	out_color = clamp(diffColor * (LAcontr + LBcontr + LCcontr) + specularColor * (specA + specB + specC) + ambientLight * ambColor, 0.0, 1.0);
