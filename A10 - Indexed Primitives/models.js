@@ -39,33 +39,43 @@ function buildGeometry() {
 
 	// Draws a Half Sphere
 	///// Creates vertices
-	var circle  = 4;
-	var radius = 8;
-	var vert3 = [];
-	for(i = 0; i < circle; i++) {
-		for(j = 0; j < radius; j++) {
-			x = ((circle-i-1)*Math.cos((2*Math.PI/radius)*j)).toFixed(4);
-			z = ((circle-i-1)*Math.sin((2*Math.PI/radius)*j)).toFixed(4);
-			y = (Math.abs(Math.sqrt(Math.pow((circle-i-1),2)-Math.pow(x,2)-Math.pow(z,2)))).toFixed(4);
-			vert3[i*(radius)+j] = [x, y, z];
-		}
+	var SPHERE_DIV = 36;
+	var i, ai, si, ci;
+	var j, aj, sj, cj;
+	var p1, p2;
+	var vert3 = [],ind3 = [];
+	for (j = 0; j <= SPHERE_DIV/2; j++) 
+	{
+	  aj = j * Math.PI / SPHERE_DIV;
+	  sj = Math.sin(aj);
+	  cj = Math.cos(aj);
+	  for (i = 0; i <= SPHERE_DIV; i++) 
+	  {
+		ai = i * 2 * Math.PI / SPHERE_DIV;
+		si = Math.sin(ai);
+		ci = Math.cos(ai);
+		x = si * sj;  // X
+		y = cj;       // Y
+		z = ci * sj;  // Z
+		vert3.push([x,y,z]);
+	  }
 	}
-	
-	////// Creates indices
-	var ind3 = [];
-	for(i = 0; i < circle; i++) {
-		for(j = 0; j < radius-2; j++) {
-				ind3[6*(i*(radius)+j)  ] = (radius)*j+i;
-				ind3[6*(i*(radius)+j)+1] = (radius)*j+i+1;
-				ind3[6*(i*(radius)+j)+2] = (radius)*(j+1)+i+1;
-				ind3[6*(i*(radius)+j)+3] = (radius)*j+i;
-				ind3[6*(i*(radius)+j)+4] = (radius)*(j+1)+i+1;
-				ind3[6*(i*(radius)+j)+5] = (radius)*(j+1)+i;
-		}
+  
+	for (j = 0; j < SPHERE_DIV/2; j++)
+	{
+	  for (i = 0; i < SPHERE_DIV; i++)
+	  {
+		p1 = j * (SPHERE_DIV+1) + i;
+		p2 = p1 + (SPHERE_DIV+1);
+		ind3.push(p1);
+		ind3.push(p2);
+		ind3.push(p1 + 1);
+		ind3.push(p1 + 1);
+		ind3.push(p2);
+		ind3.push(p2 + 1);
+	  }
 	}
-	console.log(vert3);
-	console.log(ind3);
-	
+
 	var color3 = [0.0, 1.0, 0.0];
 	addMesh(vert3, ind3, color3);
 }
