@@ -166,69 +166,36 @@ function buildGeometry() {
 	addMesh(vert4, ind4, color4);
 
 	// Draws a Sphere --- To do for the assignment.
-	var vert5 = [];
-	var ind5 = [0, 1, 2,  0, 2, 3];
-	var color5 = [1.0, 0.0, 0.0];
-	n_circles=5;
-	n_angles = 30;
-	circles=0;
-	radius = 0;
-
-	for(circles=0; circles<5; circles++){
-		for(radius=0; radius < n_angles; radius++){
-			x = 
-			dx = -(n_circles-circles-1)*Math.sin((2*Math.PI/n_angles)*radius);
-			dz = (n_circles-circles-1)*Math.cos((2*Math.PI/n_angles)*radius);
-			vert5.push([x,y,z,0.0,0.0,0.0]);
-		}
-	}
-	console.log(vert5);
-	for(circles=0; circles<n_circles; circles++){
-		for(radius=0; radius < n_angles; radius++){
-			ind5.push(circles*radius);
-			ind5.push(circles*radius+1);
-			ind5.push(circles*(radius+1)+1);
-			ind5.push(circles*radius);
-			ind5.push(circles*(radius+1)+1);
-			ind5.push(circles*(radius+1));
-		}
-	}
-
-
-
-
-
-	//prova!!!!!
-
-
-	var SPHERE_DIV = 36;
-	var i, ai, si, ci;
-	var j, aj, sj, cj;
+	
+	var N_CIRCLES = 36;
+	var i, alphai, sini, cosi;
+	var j, alphaj, sinj, cosj;
+	//points on circle 1 and 2 (external/internal circle)
 	var p1, p2;
 	var vert5 = [],ind5 = [];
-	for (j = 0; j <= SPHERE_DIV; j++) 
+	for (j = 0; j <= N_CIRCLES; j++) 
 	{
-	  aj = j * Math.PI / SPHERE_DIV;
-	  sj = Math.sin(aj);
-	  cj = Math.cos(aj);
-	  for (i = 0; i <= SPHERE_DIV; i++) 
+	  alphaj = j * Math.PI / N_CIRCLES;
+	  sinj = Math.sin(alphaj);
+	  cosj = Math.cos(alphaj);
+	  for (i = 0; i <= N_CIRCLES; i++) 
 	  {
-		ai = i * 2 * Math.PI / SPHERE_DIV;
-		si = Math.sin(ai);
-		ci = Math.cos(ai);
-		x = si * sj;  // X
-		y = cj;       // Y
-		z = ci * sj;  // Z
+		alphai = i * 2 * Math.PI / N_CIRCLES;
+		sini = Math.sin(alphai);
+		cosi = Math.cos(alphai);
+		x = sini * sinj;  // X
+		y = cosj;       // Y
+		z = cosi * sinj;  // Z
 		vert5.push([x,y,z,x,y,z]);
 	  }
 	}
   
-	for (j = 0; j < SPHERE_DIV; j++)
+	for (j = 0; j < N_CIRCLES; j++)
 	{
-	  for (i = 0; i < SPHERE_DIV; i++)
+	  for (i = 0; i < N_CIRCLES; i++)
 	  {
-		p1 = j * (SPHERE_DIV+1) + i;
-		p2 = p1 + (SPHERE_DIV+1);
+		p1 = j * (N_CIRCLES+1) + i;
+		p2 = p1 + (N_CIRCLES+1);
 		ind5.push(p1);
 		ind5.push(p2);
 		ind5.push(p1 + 1);
@@ -239,6 +206,6 @@ function buildGeometry() {
 	}
 
 
-
+	var color5 = [1.0,0.0,0.0];
 	addMesh(vert5, ind5, color5);
 }
