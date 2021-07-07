@@ -27,8 +27,8 @@ var quaternion = new Quaternion();
 
 function updateWorld(rvx, rvy, rvz) {
 	//quat = Quaternion(1,[rvx,rvy,rvz]).toMatrix4();
-	var new_quaternion = Quaternion(Math.cos(rad/2),Math.sin(rad/2)*rvx,Math.sin(rad/2)*rvy,Math.sin(rad/2)*rvz);
-	quaternion = quaternion.mul(new_quaternion);
+	var new_quaternion = Quaternion(Math.cos(rad/2), Math.sin(rad/2)*rvx, Math.sin(rad/2)*rvy, Math.sin(rad/2)*rvz);
+	quaternion = new_quaternion.mul(quaternion);
 	var out = quaternion.toMatrix4();
 	return out;
 }
