@@ -165,12 +165,12 @@ function buildGeometry() {
 	}
 	addMesh(vert4, ind4, color4);
 
-	// Draws a Sphere --- To do for the assignment.
+	// Draws a Sphere
 	
 	var N_CIRCLES = 36;
 	var i, alphai, sini, cosi;
 	var j, alphaj, sinj, cosj;
-	//points on circle 1 and 2 (external/internal circle)
+	
 	var p1, p2;
 	var vert5 = [],ind5 = [];
 	for (j = 0; j <= N_CIRCLES; j++) 
@@ -194,6 +194,7 @@ function buildGeometry() {
 	{
 	  for (i = 0; i < N_CIRCLES; i++)
 	  {
+		//ottengo i punti di fianco a quello che sto considerando ma nel cerchio successivo
 		p1 = j * (N_CIRCLES+1) + i;
 		p2 = p1 + (N_CIRCLES+1);
 		ind5.push(p1);

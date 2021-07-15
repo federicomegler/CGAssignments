@@ -11,6 +11,7 @@ function buildGeometry() {
 		for(j = 0; j <= dim; j++) {
 			x = i/scale-3;
 			z = j/scale-3;
+			// I vertici hanno x e z lineari e y segue la funzione data
 			vert2[i*(dim+1)+j] = [x, Math.cos(z)*Math.sin(x), z];
 		}
 	}
@@ -37,36 +38,38 @@ function buildGeometry() {
 
 
 
-	// Draws a Half Sphere
-	///// Creates vertices
-	var SPHERE_DIV = 36;
-	var i, ai, si, ci;
-	var j, aj, sj, cj;
+	// Draws a Half Sphere (con coordinate sferiche)
+	
+	var DIVISIONS = 72; //Numero di divisioni del cerchio, valido sia per i meridiani che per i paralleli
+	var i, alphai, sinalphai, cosalphai;
+	var j, alphaj, sinalphaj, cosalphaj;
 	var p1, p2;
 	var vert3 = [],ind3 = [];
-	for (j = 0; j <= SPHERE_DIV/2; j++) 
+	
+	for (j = 0; j <= DIVISIONS/2; j++) //Disegno solo la metà dei paralleli per fare una semisfera
 	{
-	  aj = j * Math.PI / SPHERE_DIV;
-	  sj = Math.sin(aj);
-	  cj = Math.cos(aj);
-	  for (i = 0; i <= SPHERE_DIV; i++) 
+	  alphaj = j * Math.PI / DIVISIONS; //angolo alpha che si sta considerando rispetto ai paralleli
+	  sinalphaj = Math.sin(alphaj);
+	  cosalphaj = Math.cos(alphaj);
+	  //Per ogni punto sull'equatore genero tutti i punti sul meridiano (anche dalla parte opposta)
+	  for (i = 0; i <= DIVISIONS; i++) 
 	  {
-		ai = i * 2 * Math.PI / SPHERE_DIV;
-		si = Math.sin(ai);
-		ci = Math.cos(ai);
-		x = si * sj;  // X
-		y = cj;       // Y
-		z = ci * sj;  // Z
+		alphai = i * 2 * Math.PI / DIVISIONS;
+		sinalphai = Math.sin(alphai);
+		cosalphai = Math.cos(alphai);
+		x = sinalphai * sinalphaj;  
+		y = cosalphaj;       
+		z = cosalphai * sinalphaj;
 		vert3.push([x,y,z]);
 	  }
 	}
   
-	for (j = 0; j < SPHERE_DIV/2; j++)
+	for (j = 0; j < DIVISIONS/2; j++)
 	{
-	  for (i = 0; i < SPHERE_DIV; i++)
+	  for (i = 0; i < DIVISIONS; i++)
 	  {
-		p1 = j * (SPHERE_DIV+1) + i;
-		p2 = p1 + (SPHERE_DIV+1);
+		p1 = j * (DIVISIONS+1) + i;
+		p2 = p1 + (DIVISIONS+1);
 		ind3.push(p1);
 		ind3.push(p2);
 		ind3.push(p1 + 1);
