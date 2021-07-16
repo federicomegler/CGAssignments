@@ -24,9 +24,11 @@ function view() {
 			   0.0,		0.0,		0.0,		1.0];
 		
 	//exercise 1
+	//Mv = R_z(-ro)*R_x(-beta)*R_y(-alpha)*T(-x,-y,-z)
 	var ro = 0;
 	var alpha = 90;
 	var beta = -30;
+	//ometto ro che vale 0
 	A1 = utils.MakeRotateXMatrix(-beta);
 	A1 = utils.multiplyMatrices(A1, utils.MakeRotateYMatrix(-alpha));
 	A1= utils.multiplyMatrices(A1, utils.MakeTranslateMatrix(-5,-2.5,0));
@@ -42,6 +44,7 @@ function view() {
 
 	//exercise 3
 	
+	// V_z = (c-a)/(|c-a|)
 	function getZVector(cx,cy, cz, ax, ay, az){
 		vx=(cx-ax)/Math.sqrt(Math.pow(cx-ax,2) + Math.pow(cy-ay,2)+ Math.pow(cz-az,2));
 		vy=(cy-ay)/Math.sqrt(Math.pow(cx-ax,2) + Math.pow(cy-ay,2)+ Math.pow(cz-az,2));
@@ -49,12 +52,14 @@ function view() {
 		return [vx, vy, vz];
 	}
 	
+	//V_x = (U x V_z)/(|U x V_z|)
 	function getXVector(u, vz){
 		den = Math.sqrt(Math.pow(utils.crossVector(u,vz)[0],2) + Math.pow(utils.crossVector(u,vz)[1],2)+ Math.pow(utils.crossVector(u,vz)[2],2));
 		num = utils.crossVector(u,vz);
 		return [num[0]/den,num[1]/den,num[2]/den]
 	}
 
+	//V_y = V_z x V_x
 	function getYVector(vz,vx){
 		return utils.crossVector(vz,vx);
 	}

@@ -186,7 +186,8 @@ function buildGeometry() {
 		x = sini * sinj;  // X
 		y = cosj;       // Y
 		z = cosi * sinj;  // Z
-		vert5.push([x,y,z,x,y,z]);
+		let normal = normalize([x,y,z]);
+		vert5.push([x,y,z,normal[0],normal[1],normal[2]]);
 	  }
 	}
   

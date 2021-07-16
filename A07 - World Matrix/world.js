@@ -31,6 +31,10 @@ function world() {
 
 
 
+
+
+	//  M = T(x,y,z)*R_y(alpha)*R_x(beta)*R_z(gamma)*S(x,y,z)
+
 	//exercise 1
 	A1 = utils.MakeTranslateMatrix(0,0,-3);
 	A1 = utils.multiplyMatrices(A1, utils.MakeRotateYMatrix(90));

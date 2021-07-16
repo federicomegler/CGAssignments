@@ -9,6 +9,7 @@ function buildGeometry() {
 
 
 	// Draws a filled S-shaped pattern (replace the vertices and primitive type)
+	// Triangle strips
 	var vert2 = [[0.0,-5.0,0.0], [7.0,-5.0,0.0], [0.0, -3.0,0.0],[7.0, -3.0,0.0],[5.0, -3.0,0.0],[7.0, 2.0,0.0]
 	,[5.0, 0.0,0.0],[5.0, 2.0,0.0], [0.0,0.0,0.0], [0.0,2.0,0.0],[2.0,2.0,0.0],[0.0,7.0,0.0],[2.0,5.0,0.0],
 	[7.0,7.0,0.0],[7.0,5.0,0.0]];
@@ -17,6 +18,8 @@ function buildGeometry() {
 
 
 	// Draws a filled pentacong (replace the vertices and primitive type)
+	//triangle fans
+	//il primo punto è il centro gli altri sono i vertici del pentagono
 	var vert3 = [[0.0,0.38, 0.0], [-1.0,-1.0,0.0],[1.0,-1.0,0.0],[1.62,0.9,0.0],[0.0,2.08,0.0],[-1.62,0.9,0.0],[-1.0,-1.0,0.0]];
 
 	addMesh(vert3, "F", [0.0, 1.0, 0.0]);

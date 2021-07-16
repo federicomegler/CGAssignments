@@ -25,6 +25,8 @@ function Anim3(t) {
 var i = 0;
 var j = 0;
 var verticesList = [];
+
+//6 righe e 12 colonne di fiamme
 for(i=0; i<6; ++i){
     for(j=0; j<12; ++j){
         verticesList.push([j/12,(1-((i+1)/6))/2]);

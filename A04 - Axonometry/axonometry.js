@@ -34,6 +34,7 @@ function axonometry() {
 	var a = 16/9;
 	var n = 1;
 	var f = 101;
+	//creo la matrice pe l'isometria
 	isom = [1/w, 0,0,0,
 			0,a/w, 0,0,
 			0,0,(-2)/(f-n),-(f+n)/(f-n),
@@ -42,6 +43,7 @@ function axonometry() {
 	A1 = utils.multiplyMatrices(A1, utils.MakeRotateYMatrix (45))
 
 	//exercise 2
+	//la matrice è la stessa dell'1 ma ruotata di 20 gradi sull'asse x
 	A2 = utils.multiplyMatrices(isom, utils.MakeRotateXMatrix(20));
 	A2 = utils.multiplyMatrices(A2, utils.MakeRotateYMatrix (45));
 
@@ -50,7 +52,8 @@ function axonometry() {
 	A3 = utils.multiplyMatrices(A3, utils.MakeRotateYMatrix (30));
 
 	//exercise 4
-	
+	//per ottenere la proiezione obliqua applichiamo uno shear lungo l'asse z
+	//Cavalier ha alpha 45 e p 1
 	var p = 1;
 	var oblique = [1, 0, -p*Math.cos(Math.PI/4), 0,
 					0, 1, -p*Math.sin(Math.PI/4),0,
@@ -59,6 +62,7 @@ function axonometry() {
 	O1 = utils.multiplyMatrices(isom, oblique);
 
 	//Exercise 5
+	//Cabinet ha alpha 45 e p 0.5
 	p = 0.5;
 	oblique = [1, 0, -p*Math.cos(Math.PI/3), 0,
 		0, 1, -p*Math.sin(Math.PI/3),0,

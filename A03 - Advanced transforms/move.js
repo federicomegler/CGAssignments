@@ -30,10 +30,13 @@ function move() {
 
 
 	// first ex
+	//effettuo traslazione verso il punto (0,1,-1)
 	R1 = utils.MakeTranslateMatrix(0,1,-1);
+	//effettuo le rotazioni su i tre assi
 	R1 = utils.multiplyMatrices(R1, utils.MakeRotateYMatrix(15));
 	R1 = utils.multiplyMatrices(R1, utils.MakeRotateZMatrix(45));
 	R1 = utils.multiplyMatrices(R1, utils.MakeRotateXMatrix(60));
+	//riporto l'oggetto allo stato iniziale ma ruotato sull'asse considerato
 	R1 = utils.multiplyMatrices(R1, utils.MakeRotateZMatrix(-45));
 	R1 = utils.multiplyMatrices(R1, utils.MakeRotateYMatrix(-15));
 	R1 = utils.multiplyMatrices(R1, utils.MakeTranslateMatrix(0,-1,1));
@@ -44,9 +47,10 @@ function move() {
 	S1 = utils.multiplyMatrices(S1, utils.MakeScaleNuMatrix(0.5,1,1));
 	S1 = utils.multiplyMatrices(S1,utils.MakeRotateZMatrix(-45));
 
-	// third exercise
+	// third ex
 	S2 = utils.MakeTranslateMatrix(1,1,1);
 	S2 = utils.multiplyMatrices(S2, utils.MakeRotateXMatrix(15));
+	//con -1 sulla y l'oggetto mantiene le proporzioni ma risulta specchiato
 	S2 = utils.multiplyMatrices(S2, utils.MakeScaleNuMatrix(1,-1,1));
 	S2 = utils.multiplyMatrices(S2, utils.MakeRotateXMatrix(-15));
 	S2 = utils.multiplyMatrices(S2, utils.MakeTranslateMatrix(-1,-1,-1));

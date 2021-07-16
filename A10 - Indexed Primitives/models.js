@@ -64,6 +64,7 @@ function buildGeometry() {
 	  }
 	}
   
+	//seguo lo stesso procedimento per gli indici
 	for (j = 0; j < DIVISIONS/2; j++)
 	{
 	  for (i = 0; i < DIVISIONS; i++)
