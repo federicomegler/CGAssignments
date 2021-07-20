@@ -2,8 +2,10 @@ function drawSceneTree(S) {
 	create_world(S,utils.identityMatrix(),0);
 }
 
+//funzione ricorsiva
 function create_world(S,mf,i){
 	console.log(i);
+	//se non ha figli (settimo elemento =-1)
 	if(S[i][6] == -1){
 		var m1 = utils.multiplyMatrices(utils.multiplyMatrices(utils.multiplyMatrices(
 			utils.MakeTranslateMatrix(S[i][0], S[i][1], S[i][2]),
